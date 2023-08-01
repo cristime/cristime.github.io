@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>CSP J/S 2021 游记 | Cristime 的小站</title>
+        <meta name="author" content="Cristime" />
+        <meta name="description" content="小小世外桃源" />
+        <meta name="keywords" content="blog python c++ web" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/cristime_favicon.png" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>CRISTIME 的小站</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;CRISTIME 的小站</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div class="article">
+    <div>
+        <h1>CSP J/S 2021 游记</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/2
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%9D%82%E8%B0%88/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                杂谈
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="color: #ffa2c4">游记</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/OI/" style="color: #ff7d73">OI</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%9D%82%E8%B0%88/" style="color: #03a9f4">杂谈</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>本人为 AH 蒟蒻一枚，直接上游记</p>
+<h3 id="Day-1"><a href="#Day-1" class="headerlink" title="Day -1"></a>Day -1</h3><p>白天喝了咖啡睡不着，晚上十二点爬起来打了个高精板子（我还是太弱了qwq</p>
+<h3 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h3><p>上了一天课，中午和下午放学被班主任喊去辅导她女儿，教她怎么装虚拟机、用 NOI Linux（我真是无语了，第二天就比赛了，到现在连比赛环境都不熟悉）<del>浪费了我宝贵的睡觉时间</del>。</p>
+<p>放学后晚上坐高铁到了 WH，随便水几道模板吧。</p>
+<span id="more"></span>
+
+<p><img src="https://z3.ax1x.com/2021/10/22/5cHf2j.jpg" alt="晚上出去看考场"></p>
+<h3 id="Day-1-普及"><a href="#Day-1-普及" class="headerlink" title="Day 1 普及"></a>Day 1 普及</h3><p>早上起了个大早，赶到学校门口，结果进去的时候时间并不早……</p>
+<p>进了考场，找到座位，建好文件夹。一看时间还早，才八点十分，就顺手打开 Sublime 搞了几个模板（主要是最短路、最小生成树和线段树<del>，结果发现都没用上</del>）</p>
+<p>八点半打开 PDF 文件，先把四道题看了一遍。总体上感觉还好吧<del>（后来被打脸了www</del></p>
+<p>看完题的想法：</p>
+<ul>
+<li>T1：简单数学题 100pts</li>
+<li>T2：map 排序记录 rank <del>100pts</del></li>
+<li>T3：字符串 + map 随便搞搞<del>（为什么这么多 map 啊喂</del>    0-40pts</li>
+<li>T4：链表    40pts</li>
+</ul>
+<p><del>这么看分数还行啊</del></p>
+<p>8说了，开搞！</p>
+<h4 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h4><p>没什么好说的，真的很简单</p>
+<pre><code>如果 L/n != R/n 输出 n - 1
+否则输出 R % n
+</code></pre>
+<p>100pts 到手</p>
+<h4 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h4><p>不就是个排序吗，随便用 map 搞一搞就行了</p>
+<p><del>反正当时是这么想的</del></p>
+<p>搞出来大概 40 行，编译一看，三个样例就过了第一个。</p>
+<p>当时心里想：完蛋了完蛋了，我哪里出问题了？看了看代码，好像又没什么逻辑错误，大概调了将近 1 个小时还没搞出来，就放在那去搞 T3 了</p>
+<h4 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h4><p>当时看完感觉是一道大模拟（好像确实就是大模拟）</p>
+<p>我认为这题主要的难点就是 IP 地址判断是否合法上，其他就用 map 记录就行了。</p>
+<p>看了一下，数据范围保证前 11 个点满足地址合法，所以就直接处理地址了，没有判断合法。</p>
+<p>我当时先将读进去的地址字符串里面的数字提取，再用 hash 保存一个唯一值，再把它扔进 map。（现在想想好像多此一举了，我这么搞好像都可以判断是否合法了，吃了大亏）</p>
+<p>打完大概 60 行，拿样例测了下，不带 “ERR” 的全都过了。于是我就放心地去做 T4 了。</p>
+<p>但是！！！</p>
+<p>我写这题的时候没有看时间，所以在这道题上浪费了将近 2 小时的时间，这就是<strong>最大的失误</strong>了。</p>
+<h4 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h4><p>写的时候已经就剩半个小时了，随便手写了个链表（主要是不会用 STL 的 list）</p>
+<p>没报太大希望，只过了一个样例。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>感觉没发挥好，初中最后一次竞赛了，专心去中考了。</p>
+<p>估分：<br>$$<br>100+0+45+10&#x3D;155<br>$$</p>
+<h3 id="Day-1-提高"><a href="#Day-1-提高" class="headerlink" title="Day 1 提高"></a>Day 1 提高</h3><p>本身因为早上没考好，心情就比较低落，下午更没信心了。</p>
+<p>两点半开考，照样看了个题：</p>
+<ul>
+<li>T1 线段树 40pts</li>
+<li>T2 暴搜 15pts</li>
+<li>T3 暴搜 0pts</li>
+<li>T4 不会 0pts</li>
+</ul>
+<p><del>T4 我就直接输出随机数了（考验 rp 的时候到了）</del></p>
+<p>看我边上那位老哥键盘声音如飞，我才第一次见识到了什么是真正的大佬。</p>
+<p>从五点半开始没什么事情干了，随便写个对拍器，结果好像都没过……</p>
+<p>最后 20 分钟没什么想法了，直接检查了下文件夹走人。</p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>没什么心情，本身也没抱希望，高中再战吧。</p>
+<p>估分：<br>$$<br>40+15+0+0&#x3D;55<br>$$</p>
+<h3 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h3><p>这次比赛失利的原因我分析了一下，主要在两方面：</p>
+<p>第一，时间没把握好，该拿的暴力分没拿到。</p>
+<p>第二，早上比赛的心情代入下午，导致下午也没发挥好。</p>
+<p>爬了爬了，去复习准备中考了。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2020 - 2023 Cristime 的小站
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Cristime
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="cristime/giscus_discussion"
+    data-repo-id=""
+    data-category="Giscus"
+    data-category-id=""
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang=""
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    </body>
+</html>

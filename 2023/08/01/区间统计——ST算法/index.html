@@ -1,0 +1,395 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>区间统计——ST算法 | Cristime 的小站</title>
+        <meta name="author" content="Cristime" />
+        <meta name="description" content="小小世外桃源" />
+        <meta name="keywords" content="blog python c++ web" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/cristime_favicon.png" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>CRISTIME 的小站</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;CRISTIME 的小站</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div class="article">
+    <div>
+        <h1>区间统计——ST算法</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/2
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%AE%97%E6%B3%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                算法
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/OI/" style="color: #ff7d73">OI</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #00a596">C++</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Algorithm/" style="color: #ff7d73">Algorithm</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h2><p>先举一个小栗子。</p>
+<p>一数组有 $n$ 个元素，有 $m$ 次询问（$n, m &lt;&#x3D; 10^5$）。对于每次询问给出 $l, r$，求出 $[l, r]$的区间和。</p>
+<p>有的同学说，这很简单啊！直接前缀和不就行了吗？确实如此，示例代码如下：</p>
+<pre><code class="c++">int n, m; cin &gt;&gt; n &gt;&gt; m;
+vector&lt; int &gt; sum( n + 10 );
+fill( sum.begin(), sum.end(), 0 );
+for ( int i = 1, x; i &lt;= n; ++i ) &#123;
+    cin &gt;&gt; x;
+    sum[ i ] = sum[ i - 1 ] + x;
+&#125;
+while ( m-- ) &#123;
+    int l, r; cin &gt;&gt; l &gt;&gt; r;
+    l = min( l, r ); r = max( l, r );
+    cout &lt;&lt; sum[ r ] - sum[ l - 1 ] &lt;&lt; endl;
+&#125;
+</code></pre>
+<span id="more"></span>
+
+<p>但是，我们稍稍改变一下题目，将求区间和改为求区间最大值，前缀和就行不通了。我们应该如何在 $O(nlogn)$ 的时间复杂度下求得结果呢？</p>
+<h2 id="二、ST-算法介绍"><a href="#二、ST-算法介绍" class="headerlink" title="二、ST 算法介绍"></a>二、ST 算法介绍</h2><p>上面的问题也被称为区间最值查询。（$RMQ$, $Range $ $Maximum&#x2F;Minimum$ $Query$）在静态的区间最值查询问题中，我们可以使用 $ST$ 算法解决。</p>
+<p>首先我们假定需要求解的数组为 $A&#x3D;{ 10, 20, 30, 40, 50, 60 }$，且为了方便，数组下标从 $ 1 $ 开始。</p>
+<p>由于问题可离线，我们可以先预处理，再输出答案。<br>基于倍增思想，我们可以对于每一个元素构造一个倍增数组，其内容为$A$ 中 $[i, i+2^k-1]$的最大值（$i\in( [1,n]\cap\N), i+2^k-1\leq n, k\in \N$），如下图所示：</p>
+<p><img src="https://s2.loli.net/2022/07/10/1hD82MFRPrZesqL.png" alt="Pre 数组感性理解"></p>
+<p>以此类推，我们可以对于每个元素构造这么一个数组，即 $Pre$ 数组为一个二维数组，可定义为：</p>
+<pre><code class="c++">int pre[ maxn ][ maxlog ]; // maxlog 为上文中 k 的最大值，一般取 25 左右
+</code></pre>
+<p>那么，我们该如何快速求解出 $pre[i][j]$ 呢？</p>
+<h2 id="三、-pre-i-j-的求法"><a href="#三、-pre-i-j-的求法" class="headerlink" title="三、 pre[i][j] 的求法"></a>三、 pre[i][j] 的求法</h2><p>我们可以将 $ST$ 算法看作一个 DP。</p>
+<p>首先，$pre[i][j]$ 本身就可以视作一个状态矩阵，存储着对应区间的最值。</p>
+<p>接着，其边界条件是 $pre[i][0]$，即元素本身。这很容易理解，因为 $[i,i]$ 的最值本身就是 $i$ 嘛。</p>
+<p>其次，由于预处理是离线过程，所以对于新的区间最值求解，不会对已求出区间的最值产生影响，故满足 DP 的无后效性原则。</p>
+<p>最后，我们来整理状态转移方程。</p>
+<p>对于区间 $[i, j]$，显然可以将其二分为 $[i, \frac{i+j}{2}]$ 和 $(\frac{i+j}{2},j)$。若知道这两个区间的最值 $p$ 和 $q$，显然地，整个$[i,j]$区间的最值必然等于$max(p,q)$或$min(p,q)$。这样问题就转化为求子区间的最值。以此类推直至边界。我们可以结合下图进行理解。</p>
+<p><img src="https://s2.loli.net/2022/07/10/qpKdJwgXONSs9T4.png" alt="Pre数组的求法"></p>
+<p>于是我们可以轻松写出代码：</p>
+<pre><code class="c++">int n, m; cin &gt;&gt; n &gt;&gt; m;
+for ( int i = 1; i &lt;= n; ++i ) cin &gt;&gt; pre[ i ][ 0 ];
+for ( int j = 1; j &lt;= maxlog; ++j )
+    for ( int i = 1; i + ( 1 &lt;&lt; j ) - 1 &lt;= n; ++i )
+        pre[ i ][ j ] = max(
+            pre[ i ][ j - 1 ],	// [i, i+2^(j-1)-1] 即前半段区间 
+            pre[ i + ( 1 &lt;&lt; ( j - 1 ) ) ][ j - 1 ]	// [i+2^(j-1), i+2^j-1] 即后半段区间 
+        ); // 因为 2^j = 2 * 2^(j-1)，所以可以这么写
+</code></pre>
+<h2 id="四、How-to-query"><a href="#四、How-to-query" class="headerlink" title="四、How to query?"></a>四、How to query?</h2><p>预处理完毕，该如何实现高效查询呢？</p>
+<p>要求的区间为 $[l, r]$，区间长度即为 $r-l+1$。得知了区间长度，我们就可以在 $Pre$ 中进行查找。由于区间长度不一定为 $ 2^k, k\in N $，我们仅取一个区间返回结果不一定准确（因为 $Pre$ 中预处理的区间长度均为 $ 2^k $）所以我们需要找到一个长度，使得其为 $ 2^k $ 且尽量长但不超过 $[l,r]$ 的长度。显然地，这个长度为 $floor(\log_{2}{(r-l+1)})$。这个长度可以直接用于 $Pre$ 且尽量大。所以所取区间为 $[l, l+2^{log_{2}{(r-l+1)}}-1]$，在 $Pre$ 数组中即为 $ pre[l][log(r-l+1)]$。 对于 $\complement_{[l, l+2^{log_{2}{(r-l+1)}}-1]}{[l,r]}$，由于 $RMQ$ 问题的可重复贡献性，我们可以找两段重叠的区间取最值。所以可以从 $r$ 开始向左找长度同样为 $floor(\log_{2}{(r-l+1)})$ 的区间，使这个区间右端点为 $r$。于是第二个区间为 $ [r-2^{log_{2}{(r-l+1)}}+1,r] $，对应 $Pre$ 中即为 $pre[r-(1&lt;&lt;log(r-l+1))+1][log(r-l+1)]$ 。不难发现这两个区间的并集必为 $[l,r]$。即两个区间最值的 $max&#x2F;min$ 一定是整个区间的最值。通过图片进行解释：</p>
+<p><img src="https://s2.loli.net/2022/07/10/12GmBEHMLNou7ve.png" alt="并集"></p>
+<p>于是我们可得出 $query$ 函数的代码：</p>
+<pre><code class="c++">inline int query( int l, int r ) &#123;
+    int k = log( r - l + 1 );	// 简化代码
+    return max(
+        pre[ l ][ k ],
+        pre[ r - ( 1 &lt;&lt; k ) + 1 ][ k ]
+    );
+&#125;
+</code></pre>
+<p>下面是 $ST$ 算法的模板。用于解决<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3865">洛谷 P3865</a>：</p>
+<pre><code class="c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define k lg2[r - l + 1]
+
+typedef long long ll;
+
+template&lt;typename T&gt;
+inline void read(T &amp;x) &#123;
+    T f = 1; x = T(0); char ch = getchar();
+    while (!isdigit(ch)) &#123; if (ch == &#39;-&#39;) f = -1; ch = getchar(); &#125;
+    while (isdigit(ch)) &#123; x = x * 10 + ch - &#39;0&#39;; ch = getchar(); &#125;
+    x *= f;
+&#125;
+
+namespace SparseTable &#123;
+    const int MAXN = 2e6 + 10, MAXLOG = 25;
+    int n, m, f[MAXN][MAXLOG], lg2[MAXN];
+
+    void init(void) &#123;
+        // Read components
+        read(n); read(m);
+        for (int i = 1; i &lt;= n; i++)
+            read(f[i][0]);
+        // Sparse Table
+        for (int j = 1; j &lt;= MAXLOG; j++)
+            for (int i = 1; i + (1 &lt;&lt; j) - 1 &lt;= n; i++)
+                f[i][j] = max(f[i][j - 1], f[i + (1 &lt;&lt; (j - 1) )][ j - 1 ]);
+        // Log2
+        lg2[1] = 0; lg2[2] = 1;
+        for (int i = 3; i &lt; MAXN; i++)
+            lg2[i] = lg2[i / 2] + 1;
+    &#125;
+
+    inline int query(const int l, const int r) &#123;
+        return max(f[l][k], f[r - (1 &lt;&lt; k) + 1][k]);
+    &#125;
+&#125;
+
+int main(void) &#123;
+    int l, r;
+    
+    SparseTable::init();
+    while ( (SparseTable::m) --) &#123;
+        read(l); read(r);
+        printf(&quot;%d\n&quot;, SparseTable::query(min(l, r), max(l, r)));
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="六、优点与局限性"><a href="#六、优点与局限性" class="headerlink" title="六、优点与局限性"></a>六、优点与局限性</h2><p>$ST$ 算法有一些其他算法所不具备的优点，比如：</p>
+<ul>
+<li>代码量小</li>
+<li>常数小，时间复杂度较低</li>
+</ul>
+<p>$ST$ 算法的局限性很大，只能解决静态区间可重复贡献问题，局限性如下：</p>
+<ul>
+<li>可扩展性较弱</li>
+<li>无法处理在线修改操作</li>
+</ul>
+<p>第二点实际上是 $ST$ 表实际应用中最大的障碍。那么，如何解决在线修改查询问题呢？需要的两大杀器分别是<strong>树状数组</strong>和<strong>线段树（包括 zkw 线段树）</strong>，这两种数据结构将在接下来的几篇文章中介绍。</p>
+<h2 id="七、参考资料："><a href="#七、参考资料：" class="headerlink" title="七、参考资料："></a>七、参考资料：</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/123360481">【朝夕的ACM笔记】数据结构-ST表</a></li>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/sparse-table/"> OIWiki ST表 </a></li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2020 - 2023 Cristime 的小站
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Cristime
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="cristime/giscus_discussion"
+    data-repo-id=""
+    data-category="Giscus"
+    data-category-id=""
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang=""
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    </body>
+</html>

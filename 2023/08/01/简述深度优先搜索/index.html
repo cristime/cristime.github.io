@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>简述深度优先搜索 | Cristime 的小站</title>
+        <meta name="author" content="Cristime" />
+        <meta name="description" content="小小世外桃源" />
+        <meta name="keywords" content="blog python c++ web" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/cristime_favicon.png" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>CRISTIME 的小站</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;CRISTIME 的小站</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div class="article">
+    <div>
+        <h1>简述深度优先搜索</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/2
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%AE%97%E6%B3%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                算法
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/OI/" style="color: #00a596">OI</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #03a9f4">C++</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Algorithm/" style="color: #ffa2c4">Algorithm</a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="一、深度优先搜索是什么"><a href="#一、深度优先搜索是什么" class="headerlink" title="一、深度优先搜索是什么"></a>一、深度优先搜索是什么</h2><p>  在一个求解问题答案的过程中，有几种求解的方法。最为暴力的就是枚举法。枚举法枚举每一个答案即会产生一个状态，这些状态就会构成一棵解答树。当然，对于大多数题目而言，这些状态大多是无用的，这也就决定了枚举法的低效。</p>
+<p>  那么，难道就没有方法进行优化了吗？</p>
+<p>  答案是有的。因为枚举法产生了太多无用状态，所以我们就应该从解答树中去除这些无用的状态。这种方法被称作剪枝。搜索就是剪枝的一种方法。</p>
+<span id="more"></span>
+
+<p>  既然弄清楚了什么是搜索，那么深度优先搜索又是什么呢？</p>
+<p>  上文介绍了解答树的概念。我们知道，遍历一棵树有两种方式，一种为层次遍历（通常也被称为广度 &#x2F; 宽度优先遍历）；另一种为递归遍历（通常也被称为深度优先遍历）。于是可以得到，递归遍历解答树的方法被称为深度优先搜索，而层次遍历解答树的方法被称为广度 &#x2F; 宽度优先搜索。</p>
+<h2 id="二、深度优先搜索的应用题型"><a href="#二、深度优先搜索的应用题型" class="headerlink" title="二、深度优先搜索的应用题型"></a>二、深度优先搜索的应用题型</h2><p>  深度优先搜索的应用非常广泛 <del>（也被称为骗分神器）</del>。大多数暴力枚举的题目都可以用深度优先搜索来优化。另外，还有一些问题需要使用回溯法，这种题型非常适合用深度优先搜索来完成。</p>
+<h2 id="三、深度优先搜索伪代码"><a href="#三、深度优先搜索伪代码" class="headerlink" title="三、深度优先搜索伪代码"></a>三、深度优先搜索伪代码</h2><pre><code class="c++">void dfs(一些必要的参数) &#123;    // 深搜英文缩写为 dfs
+    if (到达递归终点) &#123;
+        比较是否为最优解
+        return;
+    &#125;
+    进行一些操作
+    dfs(参数); // 进行下一轮搜索
+&#125;
+</code></pre>
+<h2 id="四、例题"><a href="#四、例题" class="headerlink" title="四、例题"></a>四、例题</h2><p>  <a target="_blank" rel="noopener" href="https://luogu.com.cn/problem/P1706">洛谷 P1706 全排列问题</a></p>
+<p>  这是一道非常简单的深搜应用。代码如下</p>
+<pre><code class="c++">bool vis[N];  // 访问标记数组
+int a[N];     // 排列数组，按顺序储存当前搜索结果
+
+void dfs(int step) &#123;
+  if (step == n + 1) &#123;  // 边界
+    for (int i = 1; i &lt;= n; i++) &#123;
+      cout &lt;&lt; setw(5) &lt;&lt; a[i];
+    &#125;
+    cout &lt;&lt; endl;
+    return;
+  &#125;
+  for (int i = 1; i &lt;= n; i++) &#123;
+    if (vis[i] == 0) &#123;
+      vis[i] = 1;
+      a[step] = i;
+      dfs(step + 1);
+      vis[i] = 0;
+    &#125;
+  &#125;
+  return;
+&#125;
+// 代码来自 OI-Wiki
+</code></pre>
+<h4 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><ul>
+<li>刘汝佳 《算法竞赛入门经典》</li>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/search/dfs/">OI Wiki 深度优先搜索</a></li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2020 - 2023 Cristime 的小站
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Cristime
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+        
+<script
+    src="https://giscus.app/client.js"
+    data-repo="cristime/giscus_discussion"
+    data-repo-id=""
+    data-category="Giscus"
+    data-category-id=""
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang=""
+    crossorigin
+    async
+></script>
+
+
+
+
+
+        
+    </body>
+</html>

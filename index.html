@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <title>Cristime 的小站</title>
+        <meta name="author" content="Cristime" />
+        <meta name="description" content="小小世外桃源" />
+        <meta name="keywords" content="blog python c++ web" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <link rel="icon" href="/images/cristime_favicon.png" />
+        <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/fonts.min.css" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.8.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.8/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.8/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body>
+        <div id="layout">
+            <transition name="fade">
+                <div id="loading" v-show="loading">
+                    <div id="loading-circle">
+                        <h2>LOADING</h2>
+                        <p>加载过慢请开启缓存 浏览器默认开启</p>
+                        <img src="/images/loading.gif" />
+                    </div>
+                </div>
+            </transition>
+            <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>CRISTIME 的小站</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;CRISTIME 的小站</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+            <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+                <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/bg/82840747_p0.jpg,/images/bg/104569091_p0.jpg,/images/bg/105378946_p0.jpg,/images/bg/105448686_p0.jpg,/images/bg/106360362_p0.jpg,/images/bg/108893744_p0.jpg,/images/bg/109418378_p0.jpg,/images/bg/109645355_p0.jpg,/images/bg/FrWemcXaMAMn3xC.jpg,/images/bg/generator.png,/images/background.jpg"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Cristime 的小站</h1>
+                <h3>茕茕孑立，踽踽独行</h3>
+                <h5>小小世外桃源</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div id="home-posts-wrap" true ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2023/08/01/%E5%8C%BA%E9%97%B4%E7%BB%9F%E8%AE%A1%E2%80%94%E2%80%94ST%E7%AE%97%E6%B3%95/">
+        <h2 class="post-title">区间统计——ST算法</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E7%AE%97%E6%B3%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                算法
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/2
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h2><p>先举一个小栗子。</p>
+<p>一数组有 $n$ 个元素，有 $m$ 次询问（$n, m &lt;&#x3D; 10^5$）。对于每次询问给出 $l, r$，求出 $[l, r]$的区间和。</p>
+<p>有的同学说，这很简单啊！直接前缀和不就行了吗？确实如此，示例代码如下：</p>
+<pre><code class="c++">int n, m; cin &gt;&gt; n &gt;&gt; m;
+vector&lt; int &gt; sum( n + 10 );
+fill( sum.begin(), sum.end(), 0 );
+for ( int i = 1, x; i &lt;= n; ++i ) &#123;
+    cin &gt;&gt; x;
+    sum[ i ] = sum[ i - 1 ] + x;
+&#125;
+while ( m-- ) &#123;
+    int l, r; cin &gt;&gt; l &gt;&gt; r;
+    l = min( l, r ); r = max( l, r );
+    cout &lt;&lt; sum[ r ] - sum[ l - 1 ] &lt;&lt; endl;
+&#125;
+</code></pre>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/OI/" style="color: #ff7d73">OI</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/C/" style="color: #ff7d73">C++</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Algorithm/" style="color: #00bcd4">Algorithm</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #ffa2c4">算法</a>
+        </span>
+        
+    </div>
+    <a href="/2023/08/01/%E5%8C%BA%E9%97%B4%E7%BB%9F%E8%AE%A1%E2%80%94%E2%80%94ST%E7%AE%97%E6%B3%95/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/08/01/CSP-J-S-2021-%E6%B8%B8%E8%AE%B0/">
+        <h2 class="post-title">CSP J/S 2021 游记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%9D%82%E8%B0%88/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                杂谈
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/2
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>本人为 AH 蒟蒻一枚，直接上游记</p>
+<h3 id="Day-1"><a href="#Day-1" class="headerlink" title="Day -1"></a>Day -1</h3><p>白天喝了咖啡睡不着，晚上十二点爬起来打了个高精板子（我还是太弱了qwq</p>
+<h3 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h3><p>上了一天课，中午和下午放学被班主任喊去辅导她女儿，教她怎么装虚拟机、用 NOI Linux（我真是无语了，第二天就比赛了，到现在连比赛环境都不熟悉）<del>浪费了我宝贵的睡觉时间</del>。</p>
+<p>放学后晚上坐高铁到了 WH，随便水几道模板吧。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%B8%B8%E8%AE%B0/" style="color: #03a9f4">游记</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/OI/" style="color: #ffa2c4">OI</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%9D%82%E8%B0%88/" style="color: #00bcd4">杂谈</a>
+        </span>
+        
+    </div>
+    <a href="/2023/08/01/CSP-J-S-2021-%E6%B8%B8%E8%AE%B0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/08/01/noi-linux-2-0-%E4%BD%93%E9%AA%8C/">
+        <h2 class="post-title">noi linux 2.0 体验</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%9D%82%E8%B0%88/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                杂谈
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/2
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="一、起因"><a href="#一、起因" class="headerlink" title="一、起因"></a>一、起因</h2><p>下午，我打开 noi 官网准备报名 csp j&#x2F;s，一看官网展板：“noi linux 2.0 发布” 我就兴奋了起来。（9 月 1 日起开始使用，<br>也就意味着 csp j&#x2F;s 使用 noi linux 2.0）</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/OI/" style="color: #03a9f4">OI</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%9D%82%E8%B0%88/" style="color: #ff7d73">杂谈</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Linux/" style="color: #00bcd4">Linux</a>
+        </span>
+        
+    </div>
+    <a href="/2023/08/01/noi-linux-2-0-%E4%BD%93%E9%AA%8C/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/08/01/%E7%AE%80%E8%BF%B0%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
+        <h2 class="post-title">简述深度优先搜索</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E7%AE%97%E6%B3%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                算法
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/8/2
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="一、深度优先搜索是什么"><a href="#一、深度优先搜索是什么" class="headerlink" title="一、深度优先搜索是什么"></a>一、深度优先搜索是什么</h2><p>  在一个求解问题答案的过程中，有几种求解的方法。最为暴力的就是枚举法。枚举法枚举每一个答案即会产生一个状态，这些状态就会构成一棵解答树。当然，对于大多数题目而言，这些状态大多是无用的，这也就决定了枚举法的低效。</p>
+<p>  那么，难道就没有方法进行优化了吗？</p>
+<p>  答案是有的。因为枚举法产生了太多无用状态，所以我们就应该从解答树中去除这些无用的状态。这种方法被称作剪枝。搜索就是剪枝的一种方法。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/OI/" style="color: #ffa2c4">OI</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/C/" style="color: #00a596">C++</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/Algorithm/" style="color: #00a596">Algorithm</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%AE%97%E6%B3%95/" style="color: #00a596">算法</a>
+        </span>
+        
+    </div>
+    <a href="/2023/08/01/%E7%AE%80%E8%BF%B0%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    <div class="prev">
+        
+    </div>
+    <div class="page-index">
+        
+        <span class="current">1</span>
+        
+    </div>
+    <div class="next">
+        
+    </div>
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/cristime_avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Cristime</div>
+        <div class="description">
+            <p><del>退役 OIer</del><br>关注新技术<br>略有涉猎 <em>C&#x2F;C++ Python</em></p>
+
+        </div>
+        
+        <div class="icon-links">
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://github.com/cristime">
+                    <i
+                        class="fa- fa-brands fa-github fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="http://wpa.qq.com/msgrd?v=3&uin=462938897&site=qq&menu=yes">
+                    <i
+                        class="fa- fa-brands fa-qq fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/409547129">
+                    <i
+                        class="fa- fa-brands fa-bilibili fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+            <span class="icon-link">
+                <a href="mailto:cristimezzz@outlook.com">
+                    <i
+                        class="fa-regular fa-envelope fa-fw"
+                    ></i>
+                </a>
+            </span>
+            
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+                <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2020 - 2023 Cristime 的小站
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Cristime
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+            </div>
+            
+            <transition name="fade">
+                <div id="preview" ref="preview" v-show="previewShow">
+                    <img id="preview-content" ref="previewContent" />
+                </div>
+            </transition>
+            
+        </div>
+        <script src="/js/main.js"></script>
+        
+    </body>
+</html>
