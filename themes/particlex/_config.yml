@@ -9,17 +9,16 @@ favicon: /images/cristime_favicon.png
 
 # Home page background image
 background:
-    - /images/bg/82840747_p0.jpg
-    - /images/bg/104569091_p0.jpg
-    - /images/bg/105378946_p0.jpg
-    - /images/bg/105448686_p0.jpg
-    - /images/bg/106360362_p0.jpg
-    - /images/bg/108893744_p0.jpg
-    - /images/bg/109418378_p0.jpg
-    - /images/bg/109645355_p0.jpg
-    - /images/bg/FrWemcXaMAMn3xC.jpg
-    - /images/bg/generator.png
-    - /images/background.jpg
+    - https://s2.loli.net/2023/08/17/fVHvBs7LRrOeopK.jpg
+    - https://s2.loli.net/2023/08/17/k2DeP714NA6coMf.jpg
+    - https://s2.loli.net/2023/08/17/iyAbMFaWEHQOcJf.jpg
+    - https://s2.loli.net/2023/08/17/vT5PHuftOdWC3hY.jpg
+    - https://s2.loli.net/2023/08/17/R4PjhfFZmUCgGBs.jpg
+    - https://s2.loli.net/2023/08/17/ROkhsXH2VUK1oDg.jpg
+    - https://s2.loli.net/2023/08/17/qBiNAWX2s3yEbej.jpg
+    - https://s2.loli.net/2023/08/17/cNTU6MmEPXGYRCb.jpg
+    - https://s2.loli.net/2023/08/17/FwxogYLQbdzfDGj.jpg
+    - https://s2.loli.net/2023/08/17/tJR6olpYaNW1Am8.jpg
 
 # ParticleX theme icon is adopts the Font Awesome 6
 # https://fontawesome.com
